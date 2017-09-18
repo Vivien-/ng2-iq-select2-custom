@@ -1,0 +1,61 @@
+{
+  "_from": "ng2-iq-select2",
+  "_id": "ng2-iq-select2@5.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-nerOIe3fwsAyZ34mlpLIkPCfHtVNCil3jFbe/GBRI3+k1eAviOJGQwajeQcgSDAXgFk7GAdqZxRtE1zTAE3nHg==",
+  "_location": "/ng2-iq-select2",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "ng2-iq-select2",
+    "name": "ng2-iq-select2",
+    "escapedName": "ng2-iq-select2",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/ng2-iq-select2/-/ng2-iq-select2-5.0.0.tgz",
+  "_shasum": "c7f82a505cd2210b9af52a4bb63ffe87b4f38686",
+  "_spec": "ng2-iq-select2",
+  "_where": "/home/vivien/odos",
+  "bugs": {
+    "url": "https://github.com/Innqube/ng2-iq-select2/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Angular 2 native select 2 implementation based on bootstrap 3",
+  "homepage": "https://github.com/Innqube/ng2-iq-select2#readme",
+  "keywords": [
+    "ng",
+    "ng2",
+    "select2",
+    "multiselect",
+    "multi-select",
+    "suggest",
+    "angular2",
+    "Angular",
+    "Angular 2",
+    "Select",
+    "Select 2",
+    "bootstrap"
+  ],
+  "license": "MIT",
+  "main": "./component.js",
+  "name": "ng2-iq-select2",
+  "peerDependencies": {
+    "@angular/common": ">=2.2.3",
+    "@angular/core": ">=2.2.3",
+    "@angular/platform-browser": ">=2.2.3",
+    "@angular/forms": ">=2.2.3"
+  },
+  "repository": {
+    "url": "git+https://github.com/Innqube/ng2-iq-select2.git"
+  },
+  "types": "./component.d.ts",
+  "version": "5.0.0"
+}
