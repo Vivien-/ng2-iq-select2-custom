@@ -28,7 +28,8 @@ var IqSelect2Module = (function () {
                         iq_select2_component_1.IqSelect2Component,
                         iq_select2_results_component_1.IqSelect2ResultsComponent,
                         iq_select2_template_directive_1.IqSelect2TemplateDirective
-                    ]
+                    ],
+                    schemas: [ core_1.CUSTOM_ELEMENTS_SCHEMA ]
                 },] },
     ];
     IqSelect2Module.ctorParameters = function () { return []; };
