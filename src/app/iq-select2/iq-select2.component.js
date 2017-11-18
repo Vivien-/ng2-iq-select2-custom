@@ -42,6 +42,38 @@ var IqSelect2Component = (function () {
         this.placeholderSelected = '';
         this.onTouchedCallback = noop;
         this.onChangeCallback = noop;
+        this.listData = [];
+        this.onItemSelected = function (item) {
+            var _this = this;
+            if (this.multiple) {
+                this.selectedItems.push(item);
+                var index = this.listData.indexOf(item, 0);
+                if (index > -1) {
+                    this.listData.splice(index, 1);
+                }
+            }
+            else {
+                this.selectedItems.length = 0;
+                this.selectedItems.push(item);
+            }
+            this.onChangeCallback('id' === this.referenceMode ? this.getSelectedIds() : this.getEntities());
+            this.term.patchValue('', { emitEvent: false });
+            setTimeout(function () { return _this.focusInput(); }, 1);
+            this.resultsVisible = false;
+            this.onSelect.emit(item);
+            if (!this.multiple) {
+                this.placeholderSelected = item.text;
+            }
+        };
+        this.alreadySelected = function (item) {
+            var result = false;
+            this.selectedItems.forEach(function (selectedItem) {
+                if (selectedItem.id === item.id) {
+                    result = true;
+                }
+            });
+            return result;
+        };
     }
     IqSelect2Component.prototype.ngAfterViewInit = function () {
         this.subscribeToChangesAndLoadDataFromObservable();
