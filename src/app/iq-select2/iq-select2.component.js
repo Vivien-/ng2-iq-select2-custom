@@ -123,9 +123,10 @@ var IqSelect2Component = (function () {
             .dataSourceProvider(term)
             .map(function (items) { return _this.adaptItems(items); });
     };
-    IqSelect2Component.prototype.adaptItems = function (items) {
+    IqSelect2Component.prototype.adaptItems = function (itemsJson) {
         var _this = this;
         var convertedItems = [];
+        let items = itemsJson.results;
         items.map(function (item) { return _this.iqSelect2ItemAdapter(item); })
             .forEach(function (iqSelect2Item) { return convertedItems.push(iqSelect2Item); });
         return convertedItems;
