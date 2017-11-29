@@ -34,6 +34,7 @@ var IqSelect2Component = (function () {
         this.clientMode = false;
         this.onSelect = new core_1.EventEmitter();
         this.onRemove = new core_1.EventEmitter();
+        this.onTyped = new core_1.EventEmitter();
         this.term = new forms_1.FormControl();
         this.resultsVisible = false;
         this.selectedItems = [];
@@ -58,7 +59,7 @@ var IqSelect2Component = (function () {
             }
             this.onChangeCallback('id' === this.referenceMode ? this.getSelectedIds() : this.getEntities());
             this.term.patchValue('', { emitEvent: false });
-            setTimeout(function () { return _this.focusInput(); }, 1);
+            // setTimeout(function () { return _this.focusInput(); }, 1);
             this.resultsVisible = false;
             this.onSelect.emit(item);
             if (!this.multiple) {
@@ -87,12 +88,27 @@ var IqSelect2Component = (function () {
     IqSelect2Component.prototype.subscribeToResults = function (observable) {
         var _this = this;
         observable
-            .do(function () { return _this.resultsVisible = false; })
-            .filter(function (term) { return term.length >= _this.minimumInputLength; })
-            .switchMap(function (term) { return _this.loadDataFromObservable(term); })
-            .map(function (items) { return items.filter(function (item) { return !(_this.multiple && _this.alreadySelected(item)); }); })
-            .do(function () { return _this.resultsVisible = _this.searchFocused; })
-            .subscribe(function (items) { return _this.listData = items; });
+            .do(function () { 
+                return _this.resultsVisible = false; 
+            })
+            .filter(function (term) { 
+                return term.length >= _this.minimumInputLength; 
+            })
+            .switchMap(function (term) { 
+                return _this.loadDataFromObservable(term); 
+            })
+            .map(function (items) { 
+                return items.filter(function (item) { 
+                    return !(_this.multiple && _this.alreadySelected(item)); 
+                }); 
+            })
+            .do(function () { 
+                return _this.resultsVisible = _this.searchFocused; 
+            })
+            .subscribe(function (items) { 
+                _this.onTyped.emit("typed");
+                return _this.listData = items; 
+            });
     };
     IqSelect2Component.prototype.loadDataFromObservable = function (term) {
         return this.clientMode ? this.fetchAndfilterLocalData(term) : this.fetchData(term);
@@ -232,7 +248,7 @@ var IqSelect2Component = (function () {
         }
         this.onChangeCallback('id' === this.referenceMode ? this.getSelectedIds() : this.getEntities());
         this.term.patchValue('', { emitEvent: false });
-        setTimeout(function () { return _this.focusInput(); }, 1);
+        // setTimeout(function () { return _this.focusInput(); }, 1);
         this.resultsVisible = false;
         this.onSelect.emit(item);
         if (!this.multiple) {
@@ -390,6 +406,7 @@ var IqSelect2Component = (function () {
         'clientMode': [{ type: core_1.Input },],
         'onSelect': [{ type: core_1.Output },],
         'onRemove': [{ type: core_1.Output },],
+        'onTyped': [{ type: core_1.Output },],
         'termInput': [{ type: core_1.ViewChild, args: ['termInput',] },],
         'results': [{ type: core_1.ViewChild, args: ['results',] },],
     };
